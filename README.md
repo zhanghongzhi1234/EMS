@@ -1,5 +1,5 @@
-# EMS
-Energy Management System
+# EMS (Energy Management System)
+Energy Management System is an [ISCS](https://github.com/zhanghongzhi1234/ISCS-demo) application used by electric operators to monitor, control, and optimize the performance of the generation or transmission system. Currently it used in Guangzhou Metro Line 9, Line 13 project and Suzhou Line 5 project.
 
 # Background
 1) Energy consumption data:  
@@ -112,8 +112,7 @@ Statistics and display of equipment energy consumption trends on time, day and m
 + OpcLibrary: Opc Library to get realtime data from device
 + EMS_Release: Release folder
 
-This Application use WPF as framwwork.
+This Application use WPF as framework.
 
 # License
-
 This Application is under the GPL license. See the [LICENSE](LICENSE) file for details..
