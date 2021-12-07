@@ -1,0 +1,9 @@
+<Window x:Class="TemplateProject.Template"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:charts="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
+        Title="Dashboard" WindowStyle="None" Width="800" Height="600" WindowState="Maximized" Background="White">
+<Viewbox>
+<Grid Name="Canvas"/>
+</Viewbox>
+</Window>

@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="OpcDa.Client.OpcServer">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gAQAAAAAAAAAAABAAAEAAIAEAQAqABAAAAAAAABASAA=</HashCode>
+      <FileName>OpcServer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpcDa.Client.OpcGroup">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAIABGAQwMFQSgiAQCAIgAQAADDAABAgAAACIAAhQAA=</HashCode>
+      <FileName>OpcGroup.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpcDa.Client.ConnectionPoint">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAACAEAACAAAAAAAAAAACAAAAAAAAAAAAAQAI=</HashCode>
+      <FileName>ConnectionPoint.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.OpcCallback">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MABAACAAAAAABAAAACAEAEAACAQAIAAAAAAAACAhAAA=</HashCode>
+      <FileName>OpcCallback.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.ItemIdentifier">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAMBAAQAIAAAAQIQAAAAAAAAAAAAAAAAAAAAAAAAFA=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.ItemValue" Collapsed="true">
+    <Position X="5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIQBAAAAABAAAACAAAAAAQAAAAEAAAgQAAAABI=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpcDa.Client.OpcItem" Collapsed="true">
+    <Position X="0.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAACAGAAAggEAICABIQAAABAAABAgKAAEBAgIAAA=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OpcDa.Client.ItemResult" Collapsed="true">
+    <Position X="0.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAIAAAAAAAAAEEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.ItemValueResult" Collapsed="true">
+    <Position X="5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAIAAAAAAAAAEEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.IdentifiedResult" Collapsed="true">
+    <Position X="2.75" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAAAAAAIAAAAAAAAAEEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.ServerStatus">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAACAAwAAAAAgAAAAAAAAAYABBAAAAAABAgAEAMBA=</HashCode>
+      <FileName>ServerStatus.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OpcDa.Client.GroupState">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>EAIABAAQAIEAAgAAQCAAAAQAACBAABAgAAAAAAAAABA=</HashCode>
+      <FileName>GroupState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="OpcDa.Client.IResult">
+    <Position X="4.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OpcItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

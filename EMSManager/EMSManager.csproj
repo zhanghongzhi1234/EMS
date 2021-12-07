@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D487B21E-6477-4869-A536-2F301A8E2BB1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TemplateProject</RootNamespace>
+    <AssemblyName>EMSManager</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>images\E.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="mysql.data, Version=6.5.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\mysql.data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\GZL9_EMS\1.32_good\EMSManager\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.105.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFVisifire.Charts, Version=2.2.5.0, Culture=neutral, PublicKeyToken=99d724542e4db593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CachedMap.cs" />
+    <Compile Include="ChartData.cs" />
+    <Compile Include="ChartDataCollection.cs" />
+    <Compile Include="ComboItem.cs" />
+    <Compile Include="DeviceWindow.xaml.cs">
+      <DependentUpon>DeviceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IDevice.cs" />
+    <Compile Include="ScadaDataPoint.cs" />
+    <Compile Include="OPCServer.cs" />
+    <Compile Include="DAIHelper.cs" />
+    <Compile Include="OracleServer.cs" />
+    <Compile Include="CursorHelper.cs" />
+    <Compile Include="MyTCPIPClient.cs" />
+    <Compile Include="NavWindow.xaml.cs">
+      <DependentUpon>NavWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SQLiteServer.cs" />
+    <Compile Include="Template\GZL6_page18_jinxian_realtime.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Template\GZL6_page18_jinxian_realtime.xaml.cs" />
+    <Compile Include="Template\GZL6_page25_query_energy.cs" />
+    <Compile Include="Template\GZL6_page25_query_energy.xaml.cs" />
+    <Compile Include="Template\GZL6_page27_fullline_power.cs" />
+    <Compile Include="Template\GZL6_page27_fullline_power.xaml.cs" />
+    <Compile Include="Template\GZL6_page28_day_power.cs" />
+    <Compile Include="Template\GZL6_page28_day_power.xaml.cs" />
+    <Compile Include="Template\GZL6_page29_month_power.cs" />
+    <Compile Include="Template\GZL6_page29_month_power.xaml.cs" />
+    <Compile Include="Template\GZL6_page30_year_power.cs" />
+    <Compile Include="Template\GZL6_page30_year_power.xaml.cs" />
+    <Compile Include="Transact\EmsNode.cs" />
+    <Compile Include="Transact\Location.cs" />
+    <Compile Include="TriggerData.cs" />
+    <Compile Include="ScadaServer.cs" />
+    <Compile Include="TextData.cs" />
+    <Compile Include="DatabaseServer.cs" />
+    <Compile Include="DataSource.cs" />
+    <Compile Include="MysqlServer.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="TCPIPServer.cs" />
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RawTable.cs" />
+    <Compile Include="DebugUtil.cs" />
+    <Compile Include="UnsafeNative.cs" />
+    <Page Include="DeviceWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\GZL6_page18_jinxian_realtime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\GZL6_page25_query_energy.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\GZL6_page27_fullline_power.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\GZL6_page28_day_power.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\GZL6_page29_month_power.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Template\GZL6_page30_year_power.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Bevel.png" />
+    <Resource Include="images\Bevel_Square.png" />
+    <Resource Include="images\camera.ico" />
+    <Resource Include="images\closedfolder.ico" />
+    <Resource Include="images\Dragmove.cur" />
+    <Resource Include="images\noPortrait.png" />
+    <Resource Include="images\openfolder.ico" />
+    <Resource Include="images\windowsLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GZL6_page18_jinxian_realtime.xml.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\edit.ico" />
+    <Resource Include="images\equipcontroller-blue.ico" />
+    <Resource Include="images\pubaddress-blue.ico" />
+    <Resource Include="images\radio-blue.ico" />
+    <Resource Include="images\signs-blue.ico" />
+    <Resource Include="images\ViewSchematic.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\power.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\node.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\cable1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\device.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\key.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\powercord.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\light.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\engine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\disqus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\device.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\device1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GZL6_page25_query_energy.xml.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GZL6_page27_fullline_power.xml.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GZL6_page28_day_power.xml.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GZL6_page29_month_power.xml.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\E.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\comms_overview.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\overview1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpcLibrary\OpcLibrary.csproj">
+      <Project>{e844e70c-1a0d-4dd0-91bc-64386d174e66}</Project>
+      <Name>OpcLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Template\GZL6_page30_year_power.xml.def" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

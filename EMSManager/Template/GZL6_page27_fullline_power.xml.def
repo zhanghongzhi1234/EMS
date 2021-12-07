@@ -1,0 +1,12 @@
+<Root>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <DataSource Name="Data1_1" DataType="Static" ChartType="StackedColumn" LegendText="照明用电" LabelEnabled="false" LabelStyle="OutSide" />
+    <DataSource Name="Data1_2" DataType="Static" ChartType="StackedColumn" LegendText="动力用电" LabelEnabled="false" LabelStyle="OutSide" />
+    <DataSource Name="Data1_3" DataType="Static" ChartType="StackedColumn" LegendText="商业用电" LabelEnabled="true" LabelStyle="OutSide" />
+  </ItemGroup>
+  <ItemGroup>
+    <Mapping UIElement="Chart1" DataSource="Data1_1,Data1_2,Data1_3" />
+  </ItemGroup>
+</Root>

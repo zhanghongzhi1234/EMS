@@ -1,0 +1,83 @@
+﻿<Window x:Class="TemplateProject.DeviceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NavWindow" Name="Nav" Height="960" Width="400" Left="0" Top="120" WindowStyle="None" Background="Black" AllowsTransparency="True" Deactivated="Nav_Deactivated" ShowInTaskbar="False">
+    <Border BorderThickness="0" BorderBrush="Gray">
+        <DockPanel Grid.Row="2" Grid.Column="0" Margin="2,10,0,10">
+            <Border DockPanel.Dock="Top" Background="Black"  BorderBrush="Gray" BorderThickness="1,1,1,0.5" VerticalAlignment="Top">
+                <TextBlock Name="txtOverview" Foreground="White" FontSize="20" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Padding="2,5" FontFamily="Calibri">设 备 列 表</TextBlock>
+            </Border>
+            <Border Background="Black"  BorderBrush="Gray" BorderThickness="1,0.5,1,1">
+                <StackPanel Name="infoPanel" Background="Black" Orientation="Vertical">
+                    <TreeView x:Name="treeView1" HorizontalAlignment="Stretch" Background="Black" Height="900" SelectedItemChanged="treeView1_SelectedItemChanged">
+                        <TreeView.Resources>
+                            <Style x:Key="imageStyle1" TargetType="{x:Type Image}">
+                                <Setter Property="Width" Value="16"/>
+                                <Setter Property="Height" Value="16"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}}" Value="True">
+                                        <Setter Property="Source" Value="/images/openfolder.ico"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}}" Value="False">
+                                        <Setter Property="Source" Value="/images/closedfolder.ico"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            <Style x:Key="imageStyle2" TargetType="{x:Type Image}">
+                                <Setter Property="Width" Value="16"/>
+                                <Setter Property="Height" Value="16"/>
+                                <Setter Property="Source" Value="/images/device1.png"/>
+                            </Style>
+                            <DataTemplate x:Key="headerTemplate1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource imageStyle1}" Margin="0,3,0,0"/>
+                                    <TextBlock Margin="3,3,0,0" FontSize="18" Foreground="LightGoldenrodYellow" Text="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                            <DataTemplate x:Key="headerTemplate2">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Style="{StaticResource imageStyle2}" Margin="0,3,0,0"/>
+                                    <TextBlock Margin="3,3,0,0" FontSize="18" Foreground="White" Text="{Binding Header, RelativeSource={RelativeSource AncestorType={x:Type TreeViewItem}}}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TreeView.Resources>
+                        <TreeView.ItemContainerStyle>
+                            <Style TargetType="{x:Type TreeViewItem}">
+                                <Setter Property="IsExpanded" Value="True" />
+                            </Style>
+                        </TreeView.ItemContainerStyle>
+                        <TreeViewItem Header="Transformer" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback">
+                            <TreeViewItem Header="66KV" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True">
+                                <TreeViewItem Header="MDD/PWR/66/MT001-DGA" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                <TreeViewItem Header="MDD/PWR/66/MT002-DGA" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="22KV" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True">
+                                <TreeViewItem Header="MDD/PWR/22/LC01-ST401" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="Service" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True"/>
+                            <TreeViewItem Header="Traction" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True"/>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Switchgear" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback">
+                            <TreeViewItem Header="66KV" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True">
+                                <TreeViewItem Header="MDD/PWR/66/MB001" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="22KV" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True">
+                                <TreeViewItem Header="MDD/PWR/22/HM101" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                            </TreeViewItem>
+                            <TreeViewItem Header="750V" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback" IsExpanded="True">
+                                <TreeViewItem Header="MDD/PWR/750/LC02-DI201" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                            </TreeViewItem>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Double Converter" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback">
+                            <TreeViewItem Header="TE01/PWR/22/DCT501" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                        </TreeViewItem>
+                        <TreeViewItem Header="Batteries" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback">
+                        </TreeViewItem>
+                        <TreeViewItem Header="Voltage Limiting Device" HeaderTemplate="{StaticResource headerTemplate1}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback">
+                        </TreeViewItem>
+                    </TreeView>
+                </StackPanel>
+            </Border>
+        </DockPanel>
+    </Border>
+</Window>

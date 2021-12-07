@@ -1,0 +1,391 @@
+<Window x:Class="TemplateProject.GZL6_page18_jinxian_realtime" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:charts="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts" 
+        Title="实时电能趋势图" WindowStyle="None" Width="1920" Height="1080" WindowState="Maximized" Background="Black" Foreground="White" Icon="/images/E.ico">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="GridViewColumnHeaderStyle1" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Viewbox Width="1920" Height="1080">
+        <Grid Name="RootGrid">
+            <Grid Name="Canvas" Width="1276" Height="768" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="33"/>
+                    <RowDefinition Height="52"/>
+                    <RowDefinition Height="622*"/>
+                    <RowDefinition Height="33"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300*"/>
+                    <ColumnDefinition Width="974*"/>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Row="1" Grid.Column="1" Width="960" Margin="0,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <TextBlock Foreground="#FF8B364C" Height="35" VerticalAlignment="Top" FontSize="20" FontFamily="Cooper Std Black" Margin="200,0,4,0" Padding="50,5,50,0" Visibility="Visible">
+                        <TextBlock.Background>
+                            <RadialGradientBrush>
+                                <GradientStop Color="Black" Offset="0.844"/>
+                                <GradientStop Color="#FFFDFDFD"/>
+                                <GradientStop Color="#FF060606" Offset="1"/>
+                            </RadialGradientBrush>
+                        </TextBlock.Background>EMS</TextBlock>
+                    <Border VerticalAlignment="Center">
+                        <TextBlock Name="txtTitle" FontSize="24" FontFamily="KaiTi" FontWeight="Bold" Padding="0,0,0,0">实时电能趋势图</TextBlock>
+                    </Border>
+                    <Border VerticalAlignment="Center" HorizontalAlignment="Right">
+                        <TextBlock Name="txtDevice" FontSize="14" FontFamily="KaiTi" Margin="0,0,0,0">请选择设备</TextBlock>
+                    </Border>
+                </DockPanel>
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="52" Margin="1,0,0,0" VerticalAlignment="Top" Orientation="Horizontal">
+                    <Button Name="btnNavigation" Margin="1" Width="140" Height="30" Content="导  航" FontFamily="Calibri" Padding="10,2,10,1" BorderThickness="1" Foreground="White" BorderBrush="Gray" FontSize="16">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/images/Bevel.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="btnExpandAll" Margin="1" Width="140" Height="30" Content="全部展开" FontFamily="Calibri" Padding="10,2,10,1" BorderThickness="1" Foreground="White" BorderBrush="Gray" FontSize="16">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/images/Bevel.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="btnExit" Margin="5,1" Width="140" Height="30" Content="退  出" FontFamily="Calibri" Padding="10,2,10,1" BorderThickness="1" Foreground="White" BorderBrush="Gray" FontSize="16">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/images/Bevel.png"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <DockPanel Grid.Row="2" Grid.Column="0" Margin="2,10,0,10">
+                    <Border DockPanel.Dock="Top" Background="Black"  BorderBrush="Gray" BorderThickness="1,1,1,0.5" VerticalAlignment="Top">
+                        <TextBlock Foreground="White" FontSize="16" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Padding="2,5" FontFamily="Calibri">设 备 列 表</TextBlock>
+                    </Border>
+                    <Border Background="Black"  BorderBrush="Gray" BorderThickness="1,0.5,1,1">
+                        <StackPanel Name="infoPanel" Background="Black" Orientation="Vertical">
+                            <TreeView x:Name="treeView1" HorizontalAlignment="Stretch" Background="Black" Height="600">
+                                <TreeView.ItemContainerStyle>
+                                    <Style TargetType="{x:Type TreeViewItem}">
+                                        <Setter Property="IsExpanded" Value="True" />
+                                    </Style>
+                                </TreeView.ItemContainerStyle>
+                                <TreeView.Resources>
+                                    <Style x:Key="imageStyle1" TargetType="{x:Type Image}">
+                                        <Setter Property="Width" Value="16"/>
+                                        <Setter Property="Height" Value="16"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="/images/openfolder.ico"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=IsExpanded}" Value="False">
+                                                <Setter Property="Source" Value="/images/closedfolder.ico"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    <Style x:Key="imageStyle2" TargetType="{x:Type Image}">
+                                        <Setter Property="Width" Value="16"/>
+                                        <Setter Property="Height" Value="16"/>
+                                        <Setter Property="Source" Value="/images/device1.png"/>
+                                    </Style>
+                                    <DataTemplate x:Key="headerTemplate1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource imageStyle1}">
+                                            </Image>
+                                            <TextBlock Margin="3,0,0,0"  Foreground="White" Text="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=Header}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                    <DataTemplate x:Key="headerTemplate2">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Style="{StaticResource imageStyle2}">
+                                            </Image>
+                                            <TextBlock Margin="3,0,0,0"  Foreground="White" Text="{Binding RelativeSource={RelativeSource AncestorType=TreeViewItem}, Path=Header}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </TreeView.Resources>
+                                <TreeViewItem Header="车站 001" HeaderTemplate="{StaticResource headerTemplate1}">
+                                    <TreeViewItem Header="设备 0001 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0002 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0003 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0004 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0005 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0006 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0007 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0008 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0009 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0010 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0011 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0012 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0013 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0014 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0015 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0016 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0017 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0018 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="车站 002" HeaderTemplate="{StaticResource headerTemplate1}">
+                                    <TreeViewItem Header="设备 0001 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0002 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0003 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0004 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0005 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0006 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0007 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0008 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0009 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0010 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0011 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0012 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0013 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0014 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0015 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0016 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0017 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0018 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="车站 003" HeaderTemplate="{StaticResource headerTemplate1}">
+                                    <TreeViewItem Header="设备 0001 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0002 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0003 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0004 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0005 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0006 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0007 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0008 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0009 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0010 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0011 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0012 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0013 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0014 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0015 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0016 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0017 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0018 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="车站 004" HeaderTemplate="{StaticResource headerTemplate1}">
+                                    <TreeViewItem Header="设备 0001 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0002 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0003 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0004 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0005 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0006 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0007 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0008 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0009 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0010 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0011 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0012 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0013 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0014 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0015 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0016 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0017 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0018 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="车站 005" HeaderTemplate="{StaticResource headerTemplate1}">
+                                    <TreeViewItem Header="设备 0001 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0002 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0003 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0004 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0005 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0006 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0007 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0008 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0009 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0010 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0011 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0012 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0013 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0014 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0015 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0016 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0017 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0018 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                </TreeViewItem>
+                                <TreeViewItem Header="车站 006" HeaderTemplate="{StaticResource headerTemplate1}">
+                                    <TreeViewItem Header="设备 0001 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0002 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0003 - 入口" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0004 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0005 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0006 - 站台" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0007 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0008 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0009 - 大厅" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0010 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0011 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0012 - 地下1层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0013 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0014 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0015 - 地下2层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0016 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0017 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                    <TreeViewItem Header="设备 0018 - 地下3层" HeaderTemplate="{StaticResource headerTemplate2}" PreviewMouseDoubleClick="item_MouseDoubleClick" GiveFeedback="item_GiveFeedback"/>
+                                </TreeViewItem>
+                            </TreeView>
+                        </StackPanel>
+                    </Border>
+                </DockPanel>
+                <!--TreeView Name="treeView1" HorizontalAlignment="Left" Height="640" Margin="50,50,0,50" VerticalAlignment="Top" Width="258" /-->
+                <Grid Grid.Row="2" Grid.Column="1" Margin="0,10,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="33*"></RowDefinition>
+                        <RowDefinition Height="33*"></RowDefinition>
+                        <RowDefinition Height="33*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                        <ColumnDefinition Width="50*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Border DockPanel.Dock="Right" Background="Black" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed">
+                                <TextBlock Tag="Maximize" Width="40" Background="Green" TextAlignment="Center" VerticalAlignment="Center" FontSize="10">放大</TextBlock>
+                            </Border>
+                            <Border Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri">三相电流</TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <charts:Chart Grid.Row="1" Name="Chart1" Background="Black" Margin="0" Watermark="False" Padding="5" BorderThickness="1" ToolTip="三相电流" Tag="三相电流" ScrollingEnabled="False">
+                            <charts:Chart.AxesX>
+                                <charts:Axis ValueFormatString="H:mm:ss" Interval="5" IntervalType="Seconds" />
+                            </charts:Chart.AxesX>
+                            <charts:Chart.AxesY>
+                                <charts:Axis Suffix="A" />
+                            </charts:Chart.AxesY>
+                        </charts:Chart>
+                    </Grid>
+                    <Grid Grid.Row="0" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Border DockPanel.Dock="Right" Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Tag="Maximize" Width="40" Background="Green" TextAlignment="Center" VerticalAlignment="Center" FontSize="10" Visibility="Collapsed">放大</TextBlock>
+                            </Border>
+                            <Border Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri">功率</TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <charts:Chart Name="Chart2" Grid.Row="1" Background="Black" Margin="0" Watermark="False" Padding="5" BorderThickness="1" ToolTip="功率" Tag="功率" ScrollingEnabled="False">
+                            <charts:Chart.AxesX>
+                                <charts:Axis ValueFormatString="H:mm:ss" Interval="5" IntervalType="Minutes" />
+                            </charts:Chart.AxesX>
+                            <charts:Chart.AxesY>
+                                <!--charts:Axis Suffix="KW" AxisType="Primary" AxisMaximum="18" Interval="2" /-->
+                                <charts:Axis Suffix="W" AxisType="Primary" />
+                                <charts:Axis AxisType="Secondary"/>
+                            </charts:Chart.AxesY>
+                        </charts:Chart>
+                    </Grid>
+                    <!--Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Border DockPanel.Dock="Right" Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Tag="Maximize" Width="40" Background="Green" TextAlignment="Center" VerticalAlignment="Center" FontSize="10">放大</TextBlock>
+                            </Border>
+                            <Border Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri">电压合格率</TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <charts:Chart Name="Chart3" Grid.Row="1" Margin="0" Background="Black" Watermark="False" Padding="5" BorderThickness="1" ToolTip="电压合格率" Tag="电压合格率">
+                            <charts:Chart.AxesX>
+                                <charts:Axis ValueFormatString="H:mm" Interval="5" IntervalType="Minutes" />
+                            </charts:Chart.AxesX>
+                            <charts:Chart.AxesY>
+                                <charts:Axis Title="%">
+                                </charts:Axis>
+                            </charts:Chart.AxesY>
+                        </charts:Chart>
+                    </Grid-->
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Border DockPanel.Dock="Right" Background="Black" BorderBrush="Gray" BorderThickness="1" Visibility="Collapsed">
+                                <TextBlock Tag="Maximize" Width="40" Background="Green" TextAlignment="Center" VerticalAlignment="Center" FontSize="10">放大</TextBlock>
+                            </Border>
+                            <Border Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri">电压数据</TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <charts:Chart Name="Chart4" Grid.Row="1" Background="Black" Margin="0" Watermark="False" Padding="5" BorderThickness="1" ToolTip="电压数据" Tag="电压数据" ScrollingEnabled="False">
+                            <charts:Chart.AxesX>
+                                <charts:Axis ValueFormatString="H:mm:ss" Interval="5" IntervalType="Minutes" />
+                            </charts:Chart.AxesX>
+                            <charts:Chart.AxesY>
+                                <charts:Axis Suffix="V" />
+                            </charts:Chart.AxesY>
+                        </charts:Chart>
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Border DockPanel.Dock="Right" Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Tag="Maximize" Width="40" Background="Green" TextAlignment="Center" VerticalAlignment="Center" FontSize="10" Visibility="Collapsed">放大</TextBlock>
+                            </Border>
+                            <Border Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri">电流频谱图</TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <charts:Chart Name="Chart5" Grid.Row="1" Background="Black" Margin="0" Watermark="False" Padding="5" BorderThickness="1" DataPointWidth="4.5" ToolTip="电流频谱图" Tag="电流频谱图">
+                            <charts:Chart.AxesX>
+                                <charts:Axis Suffix="*50Hz" />
+                            </charts:Chart.AxesX>
+                            <charts:Chart.AxesY>
+                                <charts:Axis Title="谐波电流(A)">
+                                </charts:Axis>
+                            </charts:Chart.AxesY>
+                        </charts:Chart>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="90*"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0">
+                            <Border DockPanel.Dock="Right" Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Tag="Maximize" Width="40" Background="Green" TextAlignment="Center" VerticalAlignment="Center" FontSize="10" Visibility="Collapsed">放大</TextBlock>
+                            </Border>
+                            <Border Background="Black" BorderBrush="Gray" BorderThickness="1">
+                                <TextBlock Foreground="White" FontSize="12" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Calibri">谐波歧变率</TextBlock>
+                            </Border>
+                        </DockPanel>
+                        <charts:Chart Name="Chart6" Grid.Row="1" Background="Black" Margin="0" Watermark="False" Padding="5" BorderThickness="1" ToolTip="谐波歧变率" Tag="谐波歧变率" ScrollingEnabled="False">
+                            <charts:Chart.AxesX>
+                                <charts:Axis ValueFormatString="H:mm:ss" Interval="5" IntervalType="Minutes" />
+                            </charts:Chart.AxesX>
+                            <!--charts:Chart.AxesY>
+                                <charts:Axis AxisMaximum="1" Interval="0.1" />
+                            </charts:Chart.AxesY-->
+                        </charts:Chart>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>

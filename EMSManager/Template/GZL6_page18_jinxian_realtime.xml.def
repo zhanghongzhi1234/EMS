@@ -1,0 +1,34 @@
+<Root>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <DataSource Name="Data1_1" Channel="ACurrent" DataType="Dynamic" ChartType="Line" LegendText="A相电流" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data1_2" Channel="BCurrent" DataType="Dynamic" ChartType="Line" LegendText="B相电流" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data1_3" Channel="CCurrent" DataType="Dynamic" ChartType="Line" LegendText="C相电流" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data2_1" Channel="ActivePower" DataType="Dynamic" ChartType="Line" LegendText="有功功率" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data2_2" Channel="ReactivePower" DataType="Dynamic" ChartType="Line" LegendText="无功功率" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data2_3" Channel="ApparentPower" DataType="Dynamic" ChartType="Line" LegendText="视在功率" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data2_4" Channel="PowerFactor" DataType="Dynamic" ChartType="Line" LegendText="功率因数" LineThickness="1.5" AxisYType="Secondary" XValueType="Time" />
+    <!--DataSource Name="Data3" Channel="LNE.ESC.SE01.diiSE-VoltageEligibilityRate" DataType="Dynamic" ChartType="Line" LineThickness="2" XValueType="Time" /-->
+    <DataSource Name="Data4_1" Channel="ABVoltage" DataType="Dynamic" ChartType="Line" LegendText="AB线电压" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data4_2" Channel="BCVoltage" DataType="Dynamic" ChartType="Line" LegendText="BC线电压" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data4_3" Channel="CAVoltage" DataType="Dynamic" ChartType="Line" LegendText="CA线电压" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data5_1" Channel="CurHarIa" DataType="Dynamic" ChartType="Column" LegendText="A相谐波" LabelEnabled="true" LabelStyle="OutSide" />
+    <DataSource Name="Data5_2" Channel="CurHarIb" DataType="Dynamic" ChartType="Column" LegendText="B相谐波" LabelEnabled="true" LabelStyle="OutSide" />
+    <DataSource Name="Data5_3" Channel="CurHarIc" DataType="Dynamic" ChartType="Column" LegendText="C相谐波" LabelEnabled="true" LabelStyle="OutSide" />
+    <DataSource Name="Data6_1" Channel="ToHaDisRaIa" DataType="Dynamic" ChartType="Line" LegendText="谐波畸变率Ia" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data6_2" Channel="ToHaDisRaIb" DataType="Dynamic" ChartType="Line" LegendText="谐波畸变率Ib" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data6_3" Channel="ToHaDisRaIc" DataType="Dynamic" ChartType="Line" LegendText="谐波畸变率Ic" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data6_4" Channel="ToHaDisRaVa" DataType="Dynamic" ChartType="Line" LegendText="谐波畸变率Va" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data6_5" Channel="ToHaDisRaVb" DataType="Dynamic" ChartType="Line" LegendText="谐波畸变率Vb" LineThickness="1.5" XValueType="Time" />
+    <DataSource Name="Data6_6" Channel="ToHaDisRaVc" DataType="Dynamic" ChartType="Line" LegendText="谐波畸变率Vc" LineThickness="1.5" XValueType="Time" />
+  </ItemGroup>
+  <ItemGroup>
+    <Mapping UIElement="Chart1" DataSource="Data1_1,Data1_2,Data1_3" />
+    <Mapping UIElement="Chart2" DataSource="Data2_1,Data2_2,Data2_3,Data2_4" />
+    <!--Mapping UIElement="Chart3" DataSource="Data3" /-->
+    <Mapping UIElement="Chart4" DataSource="Data4_1,Data4_2,Data4_3" />
+    <Mapping UIElement="Chart5" DataSource="Data5_1,Data5_2,Data5_3" />
+    <Mapping UIElement="Chart6" DataSource="Data6_1,Data6_2,Data6_3,Data6_4,Data6_5,Data6_6" />
+  </ItemGroup>
+</Root>

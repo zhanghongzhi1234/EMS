@@ -1,0 +1,14 @@
+<Root>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <DataSource Name="Data1_1" DataType="Static" ChartType="Doughnut" LabelEnabled="true" LabelStyle="OutSide" />
+    <!--DataSource Name="Data2_1" DataType="Static" ChartType="StackedColumn" LegendText="照明用电" LabelEnabled="false" LabelStyle="OutSide" />
+    <DataSource Name="Data2_2" DataType="Static" ChartType="StackedColumn" LegendText="动力用电" LabelEnabled="false" LabelStyle="OutSide" />
+    <DataSource Name="Data2_3" DataType="Static" ChartType="StackedColumn" LegendText="商业用电" LabelEnabled="true" LabelStyle="OutSide" /-->
+  </ItemGroup>
+  <ItemGroup>
+    <Mapping UIElement="Chart1" DataSource="Data1_1" />
+    <!--Mapping UIElement="Chart2" DataSource="Data2_1,Data2_2,Data2_3" /-->
+  </ItemGroup>
+</Root>

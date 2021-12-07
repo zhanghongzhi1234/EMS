@@ -1,0 +1,27 @@
+<Root>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <DataSource Name="Rule1" Channel="SumActivePower" />
+    <DataSource Name="Rule2" Channel="NeSumActivePower" />
+    <DataSource Name="Rule3" Channel="SumReactivePower" />
+    <DataSource Name="Rule4" Channel="NeSumReactivePower" />
+  </ItemGroup>
+  <!--ItemGroup>
+    <Variable Name="varStation" Source="cmbStation" />
+    <Variable Name="varType" Source="cmbType" />
+    <Variable Name="varSubtype" Source="cmbSubtype" />
+    <Variable Name="varDevice" Source="cmbDevice" />
+    <Variable Name="varDate" Source="dpDate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Mapping UIElement="cmbStation" DataSource="Location" />
+    <Mapping UIElement="cmbType" DataSource="Type" />
+    <Mapping UIElement="cmbSubtype" DataSource="Subtype" />
+    <Mapping UIElement="cmbDevice" DataSource="Device" />
+    <Mapping UIElement="dataGrid1" DataSource="Rule1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Trigger Button="btnQuery" DataSource="Rule1" />
+  </ItemGroup-->
+</Root>
